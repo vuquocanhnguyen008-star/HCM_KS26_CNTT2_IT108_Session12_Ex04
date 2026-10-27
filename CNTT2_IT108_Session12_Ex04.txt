@@ -1,0 +1,41 @@
+# Bài 4: Chuẩn hóa quy trình quản lý bệnh án điện tử
+## Phần 1. Phân tích
+**Yêu cầu chức năng (Functional) – hệ thống làm được gì khi khám bệnh:**
+- Tiếp nhận và đăng ký bệnh nhân.
+- Tạo và cập nhật bệnh án.
+- Ghi triệu chứng, chẩn đoán.
+- Kê đơn thuốc.
+- Tra cứu lịch sử khám.
+- Thống kê số ca dịch bệnh.
+
+**Yêu cầu phi chức năng (Non-functional) – hệ thống phải làm tốt đến mức nào, chủ yếu là bảo mật:**
+- Mã hóa dữ liệu khi lưu và khi truyền (HTTPS/TLS).
+- Phân quyền theo vai trò (bác sĩ, lễ tân, quản trị).
+- Ghi log mọi lần truy cập hồ sơ.
+- Sao lưu dữ liệu hằng ngày.
+- Thời gian phản hồi dưới 3 giây, hoạt động ổn định 99,5%.
+- Tuân thủ quy định bảo vệ dữ liệu cá nhân (Nghị định 13/2023/NĐ-CP).
+
+Chức năng là "làm gì", phi chức năng là "làm tốt và an toàn thế nào".
+
+## Phần 2. Triển khai (hệ thống Clinic-Cloud tích hợp)
+**Word:** viết SRS có Heading 1/2, tách rõ 2 mục "Yêu cầu chức năng" và "Yêu cầu phi chức năng (bảo mật)".
+**Excel – 1000 hồ sơ theo Database Mindset**
+- Mỗi hàng là 1 record (1 bệnh nhân), mỗi cột là 1 field.
+- Cột: Mã BN | Họ tên | Ngày sinh | Giới tính | SĐT | Chẩn đoán | Ngày khám | Bác sĩ.
+- Mã BN là khóa duy nhất, không trùng.
+- Header Row duy nhất, không Merge Cell, không hàng tổng chen giữa.
+**Donut Chart – số liệu dịch bệnh (tối giản)**
+- Chỉ 4 nhóm: Sốt xuất huyết, Cúm, Tay chân miệng, Khác.
+- Nhóm quan trọng nhất tô 1 màu nổi, các nhóm còn lại dùng màu nhạt.
+- Ghi % thẳng lên vòng, bỏ legend và viền thừa, đặt tổng số ca ở giữa lỗ.
+**Bẫy ô trống để AutoFilter không bị ngắt**
+- Excel ngắt vùng filter khi gặp hàng hoặc cột trống hoàn toàn, nên không để hàng nào trống cả hàng.
+- Điền giá trị cho ô thiếu: chọn vùng dữ liệu, Ctrl + G > Special > Blanks, gõ "Chưa cập nhật" rồi nhấn Ctrl + Enter.
+- Trước khi bật filter, bôi đen cả vùng dữ liệu (hoặc Ctrl + A) rồi mới Ctrl + Shift + L để chắc chắn lấy hết 1000 dòng.
+
+## Phần 3. Kiểm thử
+Nếu lỡ gán Heading Style cho nhầm đoạn văn thường:
+1. Bấm vào đoạn đó.
+2. Nhấn Ctrl + Shift + N để trả về style Normal.
+3. Đoạn đó sẽ biến mất khỏi Navigation Pane. Sau đó Update mục lục.
